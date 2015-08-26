@@ -29,6 +29,7 @@
 
 #include "ConsoleOutput.hpp"
 #include <iostream>
+#include <limits> // for std::numeric_limits
 
 namespace DEV
 {
