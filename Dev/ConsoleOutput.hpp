@@ -33,6 +33,13 @@
 #include <string>
 #include <vector>
 
+#ifdef min
+#undef min
+#endif // min
+#ifdef max
+#undef max
+#endif // max
+
 namespace DEV
 {
 
@@ -45,5 +52,7 @@ void printLines(const std::vector<std::string>& strings);
 void printLines(unsigned int numberOfLines);
 
 } // namespace DEV
+
+#include "ConsoleOutput.inl"
 
 #endif // DEV_CONSOLEOUTPUT_HPP

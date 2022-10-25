@@ -40,5 +40,5 @@ namespace DEV
 bool eventIsDefaultCloseWindow(const sf::Event& event);
 
 } // namespace DEV
-
+#include "Events.inl"
 #endif // DEV_SFML_EVENTS_HPP

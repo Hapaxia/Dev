@@ -27,15 +27,58 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-#include "Events.hpp"
+#ifndef DEV_CONSOLEOUTPUT_INL
+#define DEV_CONSOLEOUTPUT_INL
+
+#include "ConsoleOutput.hpp"
 #include <iostream>
+#include <limits> // for std::numeric_limits
 
 namespace DEV
 {
 
-bool eventIsDefaultCloseWindow(const sf::Event& event)
+inline void pressEnterToContinue(const std::string& message)
 {
-	return (event.type == sf::Event::Closed || event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape);
+	std::cin.clear();
+	std::cin.sync();
+	print('\n' + message);
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // wait for Enter to be pressed
+}
+
+inline void print(const std::string& string)
+{
+	std::cout << string << std::flush;
+}
+
+inline void printLine(const std::string& string)
+{
+	std::cout << string << std::endl;
+}
+
+inline void printLine(const std::vector<std::string>& strings)
+{
+	for (auto& string : strings)
+		std::cout << string;
+	std::cout << std::endl;
+}
+
+inline void printLineRepeat(const std::string& string, const unsigned int numberOfLines)
+{
+	for (unsigned int i{ 0 }; i < numberOfLines; ++i)
+		printLine(string);
+}
+
+inline void printLines(const std::vector<std::string>& strings)
+{
+	for (auto& string : strings)
+		printLine(string);
+}
+
+inline void printLines(const unsigned int numberOfLines)
+{
+	printLineRepeat("", numberOfLines);
 }
 
 } // namespace DEV
+
+#endif // DEV_CONSOLEOUTPUT_INL

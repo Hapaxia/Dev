@@ -27,53 +27,20 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-#include "ConsoleOutput.hpp"
+#ifndef DEV_SFML_EVENTS_INL
+#define DEV_SFML_EVENTS_INL
+
+#include "Events.hpp"
 #include <iostream>
-#include <limits> // for std::numeric_limits
 
 namespace DEV
 {
 
-void pressEnterToContinue(const std::string& message)
+inline bool eventIsDefaultCloseWindow(const sf::Event& event)
 {
-	std::cin.clear();
-	std::cin.sync();
-	print('\n' + message);
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // wait for Enter to be pressed
-}
-
-void print(const std::string& string)
-{
-	std::cout << string << std::flush;
-}
-
-void printLine(const std::string& string)
-{
-	std::cout << string << std::endl;
-}
-
-void printLine(const std::vector<std::string>& strings)
-{
-	for (auto& string : strings)
-		std::cout << string;
-	std::cout << std::endl;
-}
-
-void printLineRepeat(const std::string& string, const unsigned int numberOfLines)
-{
-	for (unsigned int i{ 0 }; i < numberOfLines; ++i)
-		printLine(string);
-}
-
-void printLines(const std::vector<std::string>& strings)
-{
-	for (auto& string : strings)
-		printLine(string);
-}
-
-void printLines(const unsigned int numberOfLines)
-{
-	printLineRepeat("", numberOfLines);
+	return (event.type == sf::Event::Closed || event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape);
 }
 
 } // namespace DEV
+
+#endif // DEV_SFML_EVENTS_INL
