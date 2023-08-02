@@ -1,6 +1,6 @@
 # Dev
 by Hapaxia
 
-Some stuff to help through development.
+Some stuff to help through development whether it be console or with SFML.
 
-Fully template version now available on [fully-template-version branch](https://github.com/Hapaxia/Dev/tree/fully-template-version)
+Now fully templated version.
