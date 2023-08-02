@@ -2,7 +2,7 @@
 //
 // Dev
 //
-// Copyright(c) 2014-2016 M.J.Silk
+// Copyright(c) 2014-2023 M.J.Silk
 //
 // This software is provided 'as-is', without any express or implied
 // warranty. In no event will the authors be held liable for any damages
@@ -42,7 +42,7 @@ namespace DEV
 class KeepConsoleOpen
 {
 public:
-	enum KeyRequirement
+	enum class KeyRequirement
 	{
 		Escape,
 		Enter,
@@ -57,13 +57,13 @@ public:
 			while (isAnyKeyPressed()) {}
 
 			std::cout << std::endl << m_waitMessage << std::flush;
-			if (m_keyRequirement == Escape)
+			if (m_keyRequirement == KeyRequirement::Escape)
 				// escape to close
 				while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {}
-			else if (m_keyRequirement == Enter)
+			else if (m_keyRequirement == KeyRequirement::Enter)
 				// enter to close
 				while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {}
-			else if (m_keyRequirement == Any)
+			else if (m_keyRequirement == KeyRequirement::Any)
 				// any key to close
 				while (!isAnyKeyPressed()) {}
 		}
@@ -83,11 +83,11 @@ public:
 	void resetMessageToDefault()
 	{
 		m_useCustomMessage = false;
-		if (m_keyRequirement == Enter)
+		if (m_keyRequirement == KeyRequirement::Enter)
 			m_waitMessage = defaultWaitMessageEnterKey;
-		else if (m_keyRequirement == Any)
+		else if (m_keyRequirement == KeyRequirement::Any)
 			m_waitMessage = defaultWaitMessageAnyKey;
-		else if (m_keyRequirement == Escape)
+		else if (m_keyRequirement == KeyRequirement::Escape)
 			m_waitMessage = defaultWaitMessageEscapeKey;
 		else
 			m_waitMessage = "";
@@ -106,7 +106,7 @@ private:
 	const std::string defaultWaitMessageAnyKey = "Press any key to close the console.";
 	bool m_allowToClose = false;
 	std::string m_waitMessage = defaultWaitMessageEnterKey;
-	KeyRequirement m_keyRequirement = Enter;
+	KeyRequirement m_keyRequirement = KeyRequirement::Enter;
 	bool m_useCustomMessage = false;
 
 	bool isAnyKeyPressed()

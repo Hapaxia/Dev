@@ -2,7 +2,7 @@
 //
 // Dev
 //
-// Copyright(c) 2014-2016 M.J.Silk
+// Copyright(c) 2014-2023 M.J.Silk
 //
 // This software is provided 'as-is', without any express or implied
 // warranty. In no event will the authors be held liable for any damages
@@ -27,15 +27,20 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
+#ifndef DEV_SFML_EVENTS_INL
+#define DEV_SFML_EVENTS_INL
+
 #include "Events.hpp"
 #include <iostream>
 
 namespace DEV
 {
 
-bool eventIsDefaultCloseWindow(const sf::Event& event)
+inline bool eventIsDefaultCloseWindow(const sf::Event& event)
 {
 	return (event.type == sf::Event::Closed || event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape);
 }
 
 } // namespace DEV
+
+#endif // DEV_SFML_EVENTS_INL
