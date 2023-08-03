@@ -43,7 +43,6 @@
 namespace DEV
 {
 
-void pressEnterToContinue(const std::string& message = "Press Enter to continue.");
 void print(const std::string& string);
 void printLine(const std::string& string = "");
 void printLine(const std::vector<std::string>& strings);
