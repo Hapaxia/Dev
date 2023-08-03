@@ -27,49 +27,38 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-#ifndef DEV_CONSOLEOUTPUT_INL
-#define DEV_CONSOLEOUTPUT_INL
+#ifndef DEV_CONSOLEINPUT_HPP
+#define DEV_CONSOLEINPUT_HPP
 
-#include "ConsoleOutput.hpp"
-#include <iostream>
+#include <string>
+#include <vector>
+#include <optional> // requires C++17
+
+#ifdef min
+#undef min
+#endif // min
+#ifdef max
+#undef max
+#endif // max
 
 namespace DEV
 {
 
-inline void print(const std::string& string)
-{
-	std::cout << string << std::flush;
-}
+void pressEnterToContinue(const std::string& message = "Press Enter to continue.");
 
-inline void printLine(const std::string& string)
-{
-	std::cout << string << std::endl;
-}
+std::string inputLine(const std::string& prompt = "", bool newLine = false);
 
-inline void printLine(const std::vector<std::string>& strings)
-{
-	for (auto& string : strings)
-		std::cout << string;
-	std::cout << std::endl;
-}
+template <class T>
+std::optional<T> extractNumberFromString(bool isInteger, const std::string& string);
 
-inline void printLineRepeat(const std::string& string, const unsigned int numberOfLines)
-{
-	for (unsigned int i{ 0 }; i < numberOfLines; ++i)
-		printLine(string);
-}
+template <class T>
+std::optional<T> inputNumber(bool isInteger, const std::string& prompt = "", bool newLine = false);
 
-inline void printLines(const std::vector<std::string>& strings)
-{
-	for (auto& string : strings)
-		printLine(string);
-}
-
-inline void printLines(const unsigned int numberOfLines)
-{
-	printLineRepeat("", numberOfLines);
-}
+template <class T>
+std::optional<T> repeatInputNumberUntilValid(bool isInteger, const std::string& prompt = "", bool newLine = false, const std::string& repeatPrompt = "", const std::vector<std::string>& validBreakawayStrings = {});
 
 } // namespace DEV
 
-#endif // DEV_CONSOLEOUTPUT_INL
+#include "ConsoleInput.inl"
+
+#endif // DEV_CONSOLEINPUT_HPP

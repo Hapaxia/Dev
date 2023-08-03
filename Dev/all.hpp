@@ -31,6 +31,7 @@
 #define DEV_ALL_HPP
 
 #include "KeepConsoleOpen.hpp"
+#include "ConsoleInput.hpp"
 #include "ConsoleOutput.hpp"
 
 #endif // DEV_ALL_HPP
