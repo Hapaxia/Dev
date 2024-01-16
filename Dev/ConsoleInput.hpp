@@ -32,7 +32,9 @@
 
 #include <string>
 #include <vector>
+#ifndef DEV_REMOVE_ABOVE_CPP11
 #include <optional> // requires C++17
+#endif // DEV_REMOVE_ABOVE_CPP11
 
 #ifdef min
 #undef min
@@ -48,6 +50,7 @@ void pressEnterToContinue(const std::string& message = "Press Enter to continue.
 
 std::string inputLine(const std::string& prompt = "", bool newLine = false);
 
+#ifndef DEV_REMOVE_ABOVE_CPP11
 template <class T>
 std::optional<T> extractNumberFromString(bool isInteger, const std::string& string);
 
@@ -56,6 +59,7 @@ std::optional<T> inputNumber(bool isInteger, const std::string& prompt = "", boo
 
 template <class T>
 std::optional<T> repeatInputNumberUntilValid(bool isInteger, const std::string& prompt = "", bool newLine = false, const std::string& repeatPrompt = "", const std::vector<std::string>& validBreakawayStrings = {});
+#endif // DEV_REMOVE_ABOVE_CPP11
 
 } // namespace DEV
 

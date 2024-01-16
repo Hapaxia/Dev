@@ -58,6 +58,7 @@ inline std::string inputLine(const std::string& prompt, const bool newLine)
 	return inputString;
 }
 
+#ifndef DEV_REMOVE_ABOVE_CPP11
 template <class T>
 inline std::optional<T> extractNumberFromString(const bool isInteger, const std::string& string)
 {
@@ -93,6 +94,7 @@ inline std::optional<T> repeatInputNumberUntilValid(const bool isInteger, const 
 	}
 	return o;
 }
+#endif // DEV_REMOVE_ABOVE_CPP11
 
 } // namespace DEV
 
