@@ -105,8 +105,8 @@ private:
 	const std::string defaultWaitMessageEnterKey = "Press Enter to close the console.";
 	const std::string defaultWaitMessageAnyKey = "Press any key to close the console.";
 	bool m_allowToClose = false;
-	std::string m_waitMessage = defaultWaitMessageEnterKey;
-	KeyRequirement m_keyRequirement = KeyRequirement::Enter;
+	std::string m_waitMessage = defaultWaitMessageEscapeKey;
+	KeyRequirement m_keyRequirement = KeyRequirement::Escape;
 	bool m_useCustomMessage = false;
 
 	bool isAnyKeyPressed()
