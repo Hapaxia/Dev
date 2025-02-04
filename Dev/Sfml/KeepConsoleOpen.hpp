@@ -2,7 +2,7 @@
 //
 // Dev
 //
-// Copyright(c) 2014-2024 M.J.Silk
+// Copyright(c) 2014-2025 M.J.Silk
 //
 // This software is provided 'as-is', without any express or implied
 // warranty. In no event will the authors be held liable for any damages
@@ -59,10 +59,10 @@ public:
 			std::cout << std::endl << m_waitMessage << std::flush;
 			if (m_keyRequirement == KeyRequirement::Escape)
 				// escape to close
-				while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {}
+				while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Scancode::Escape)) {}
 			else if (m_keyRequirement == KeyRequirement::Enter)
 				// enter to close
-				while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {}
+				while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Scancode::Enter)) {}
 			else if (m_keyRequirement == KeyRequirement::Any)
 				// any key to close
 				while (!isAnyKeyPressed()) {}
@@ -111,7 +111,8 @@ private:
 
 	bool isAnyKeyPressed()
 	{
-		for (int k = -1; k < sf::Keyboard::KeyCount; ++k)
+		const int count{ static_cast<int>(sf::Keyboard::KeyCount) };
+		for (int k = -1; k < count; ++k)
 		{
 			if (sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(k)))
 				return true;

@@ -2,7 +2,7 @@
 //
 // Dev
 //
-// Copyright(c) 2014-2024 M.J.Silk
+// Copyright(c) 2014-2025 M.J.Silk
 //
 // This software is provided 'as-is', without any express or implied
 // warranty. In no event will the authors be held liable for any damages
@@ -36,9 +36,16 @@
 namespace DEV
 {
 
-inline bool eventIsDefaultCloseWindow(const sf::Event& event)
+inline bool eventIsDefaultCloseWindow(const std::optional<sf::Event>& event)
 {
-	return (event.type == sf::Event::Closed || event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape);
+	if (event->is<sf::Event::Closed>())
+		return true;
+	if (const auto keyPressed{ event->getIf<sf::Event::KeyPressed>() })
+	{
+		if (keyPressed->scancode == sf::Keyboard::Scancode::Escape)
+			return true;
+	}
+	return false;
 }
 
 } // namespace DEV
